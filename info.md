@@ -56,6 +56,7 @@
 ####Skrypt ANT-a
 Aby skrypt działał poprawnie należy umieścić plik framework.xml w katalogu nbproject, oraz dokonać modyfikacji pliku build.xml:
 
+
 **build.xml**
 
 ```xml
