@@ -1,0 +1,336 @@
+
+body{
+    font-family: "Arial";
+    font-size: 9pt;
+}
+
+
+/*
+.filtersH, #dMenu{
+    border: 1px solid #677C89;  
+}
+*/
+
+.filtersH, #dMenu, #preMenu img{
+    color: white;
+    background-image: linear-gradient(#829AA8, #405A6A);
+    background-image:-webkit-linear-gradient(#829AA8, #405A6A);
+    background-image: -o-linear-gradient(#829AA8, #405A6A);
+    background-image:-moz-linear-gradient(top, #829AA8, #405A6A); 
+
+    font-weight: bold;
+    text-align: center;
+    padding: 2px;
+}
+
+
+.tbl td a{
+    font-size: 8pt;
+}
+
+.grayscale {
+
+}
+
+.tbl .tdRemove{
+    cursor: pointer;
+    -webkit-filter: grayscale(70%);
+    -moz-filter: grayscale(70%);
+    -o-filter: grayscale(70%);
+    -ms-filter: grayscale(70%);
+    filter: grayscale(70%); 
+}
+
+.tbl .tdRemove:hover{
+    -webkit-filter: grayscale(0);
+    -moz-filter: grayscale(0);
+    -o-filter: grayscale(0);
+    -ms-filter: grayscale(0);
+    filter: grayscale(0); 
+}
+
+.tbl .tdAdd{
+    cursor: pointer;
+    -webkit-filter: grayscale(70%);
+    -moz-filter: grayscale(70%);
+    -o-filter: grayscale(70%);
+    -ms-filter: grayscale(70%);
+    filter: grayscale(70%); 
+}
+
+.tbl .tdAdd:hover{
+    -webkit-filter: grayscale(0);
+    -moz-filter: grayscale(0);
+    -o-filter: grayscale(0);
+    -ms-filter: grayscale(0);
+    filter: grayscale(0); 
+}
+
+.tbl tbody tr:nth-child(odd) {
+    background-color: #f7f7f7;
+}
+
+.tbl tbody tr:nth-child(even) {
+    background-color: #e8e8e8; 
+}
+
+.tblSel tbody tr:hover {
+    background-color: #def; 
+}
+
+.dPage{
+
+}
+
+.dPage a{
+    margin: 2px;
+}
+/*
+#filter{
+    position: fixed;
+    top: 10%;
+    left: 10%;
+    background-color: #f4f4f4;
+    border: 1px solid #666;
+    box-shadow: 2px 2px 2px #666;
+    padding: 4px;
+    border-radius: 4px;
+}
+*/
+.pageCounter{
+    text-align: center;
+    margin: 8px;
+}
+
+
+.pageCounter div{
+    font-size: 10pt;
+    padding: 4px;
+    display: inline-block;
+    cursor: pointer;
+    color: #035;
+    margin: -2px;
+
+}
+
+.pageCounter div:hover{
+    color: red;
+}
+
+.trlog{ color: #03a; }
+.trevent{ color: #000; }
+.trerror{ color: red; }
+.trquery{ color: #494; }
+
+.trinternalerror{ 
+    color: #d0a;
+    font-weight: bold;
+}
+
+.fleft{
+    background-color: #f7f7ff;   
+    box-shadow: 1px 1px 3px #888;
+    border-radius: 0 0 8px 0 ;    
+}
+
+/*
+.filtersB{
+    padding: 0;
+    position: fixed;
+    left: -160px;
+    top: 0;
+    transition-property: left;
+    -o-transition-property: left;
+    -ms-transition-property: left;
+    -moz-transition-property: left;
+    -webkit-transition-property: left;
+    transition-duration: .25s;
+    -o-transition-duration: .25s;
+    -ms-transition-duration: .25s;
+    -moz-transition-duration: .25s;
+    -webkit-transition-duration: .25s;
+    transition-timing-function: ease-in-out;
+    -o-transition-timing-function: ease-in-out;
+    -ms-transition-timing-function: ease-in-out;
+    -moz-transition-timing-function: ease-in-out;
+    -webkit-transition-timing-function: ease-in-out;
+}
+
+.filtersA{
+    padding: 4px 8px 8px 8px;
+    display:  none;
+    max-height: 300px;
+    white-space: nowrap;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+.filtersH{
+    cursor: pointer;
+    min-width: 150px;
+    -webkit-user-select: none;  
+    -khtml-user-select: none;   
+    -moz-user-select: none; 
+    -o-user-select: none;    
+    user-select: none; 
+}
+
+.filtersH:hover, .filtersB img:hover{
+    background-image: linear-gradient(#abc, #567);
+    background-image:-webkit-linear-gradient(#abc, #567);
+    background-image: -o-linear-gradient(#abc, #567);
+    background-image:-moz-linear-gradient(top, #abc, #567); 
+}
+
+.filtersH span{
+    float: right;
+    color: yellow;
+    cursor: pointer;
+    padding: 0 4px;
+    font-size: 10pt;
+    display: none;
+}
+
+.filtersH span:hover{
+    color: greenyellow;
+}
+
+.filtersB img{
+    background-color: white;
+    box-shadow: 2px 2px 2px #ccc;
+    padding: 6px;
+    border-radius: 0 0 8px 0 ;
+    background-color: red;
+    border-left: none;
+    margin-left: 0;
+    cursor: pointer;
+}
+*/
+
+#imgRef{
+    position: relative;
+    border-radius: 0 0 0 6px;
+    display: inline-block;
+    box-shadow: 2px 2px 2px #666;
+    padding: 4px 4px 6px 8px !important;
+    cursor: pointer;
+    float: right;
+}
+
+#imgRef:hover{
+    background-image: linear-gradient(#abc, #567);
+    background-image:-webkit-linear-gradient(#abc, #567);
+    background-image: -o-linear-gradient(#abc, #567);
+    background-image:-moz-linear-gradient(top, #abc, #567); 
+}
+
+
+#preMenu{
+    position: fixed;
+    right: 0;
+    top: 0;
+    display: inline-block;
+    padding: 0 0 32px 32px;
+    /*  border: 1px solid red; */ 
+    z-index: 2;
+}
+
+#dMenu{
+    border-radius: 0 0 0 6px;
+    box-shadow: 2px 2px 2px #666;
+    padding: 4px 4px 6px 8px;   
+    float: left;
+    font-size: 9pt;
+}
+
+.menu_trans_in{
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+
+.menu_trans_out{
+    -webkit-transition: all .7s ease-in-out;
+    -moz-transition: all .7s ease-in-out;
+    -o-transition: all .7s ease-in-out;
+    transition: all .7s ease-in-out;
+}
+
+
+
+#dMenu span{
+    color: #ddd;
+}
+
+#dMenu a{
+    padding: 0 4px;
+    color: white;
+    font-weight: normal;
+    text-decoration: none;
+}
+
+#dMenu a:hover{
+    color: yellow;
+}
+
+#dMenu .def {
+    color: #6f6;
+}
+
+.btnDel{
+    font-family: "Courier New";
+    font-size: 12pt;
+    color: #500;
+    margin: -1px 2px;
+}
+
+.btnDel:hover{
+    color: red;
+}
+
+
+.tdDetails{
+    overflow: auto;
+    font-family: "Courier New";
+    background-color: white;
+
+}
+
+.tdDetails td{
+    border: none !important;
+}
+
+/*****************************************************/
+
+#dError{
+    position: fixed;
+    left: 10%;
+    right: 10%;
+    top: 10%;
+    color: black;
+    border: 2px solid #DD3C10;
+    background-color: #FFEBE8;
+    font-size: 11pt;
+    padding: 16px;
+    text-align: center;
+    display: none;
+    opacity: 0.9;
+    z-index: 10;
+}
+
+
+.CodeMirror {
+    line-height: 1.5em;
+    font-family: "Courier New";
+    font-size: 10pt;
+    background-color: #fff;
+    border: 1px solid #888888;
+
+    position: absolute;
+    top: 40px;
+    left: 4px;
+    right: 4px;
+    bottom: 4px;
+
+}

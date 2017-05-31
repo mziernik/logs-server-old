@@ -1,0 +1,38 @@
+﻿<filter>
+	<!-- Źródło = „Content” OR Źródło = „Tomcat”  -->
+	<group attr_type = "20">  	
+		<item opr = "1">Content</item>
+		<item opr = "1">Tomcat</item>	
+	</group>
+	
+	<!-- Źródło <> „Dev” -->
+	<group attr_type = "20">  	
+		<item opr = "3">Dev</item>
+	</group>
+
+	<!-- Adres = „127.0.0.1” OR Adres = „localhost”)  -->
+	<group attr_type = "21">  	
+		<item opr = "1" id = "1224" >127.0.0.1</item>
+		<item opr = "1" id = "4354" >localhost</item>	
+	</group>
+	
+	<!-- użytkownik like „Jan”)  -->
+	<group attr_type = "23">  	
+		<item opr = "2">Jan</item>
+	</group>	
+	
+	<!-- ((data_serwera > „2014-12-01” AND data_sewera < „2014-12-03”)
+		OR (data_serwera > „2014-12-10”, data_serwera < „2014-12-20”)))  -->
+	<group attr_type = "-1">  	
+		<item opr = "2">
+			<group>
+				<item opr = "5">2014-12-01</item>
+				<item opr = "6">2014-12-03</item>
+			</group>
+			<group>
+				<item opr = "5">2014-12-10</item>
+				<item opr = "6">2014-12-20</item>
+			</group>
+		</item>
+	</group>	
+</filter>

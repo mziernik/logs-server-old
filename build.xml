@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Logi" default="default" basedir=".">
+  
+    <property name="jar.name" value="logi.jar"/>
+    <property name="war.name" value="ROOT.war"/>
+   <!-- <property name="skip.war" value=""/> -->
+    <!--<property name="skip.pack.sources" value=""/>-->
+    <!--<property name="skip.backup" value=""/>-->
+    <!--<property name="skip.run-script" value=""/>-->
+    <!--<property name="skip.cleanup-script" value=""/>-->
+    
+    <import file="nbproject/framework.xml"/> 
+    <import file="nbproject/build-impl.xml"/>	
+        
+    <target name="-pre-init" depends="fra-pre-init"> </target>
+    <target name="-post-init" depends="fra-post-init"> </target>    
+    <target name="-pre-compile" depends="fra-pre-compile"> </target>   
+    <target name="-post-compile" depends="fra-post-compile"> 
+        <echo level="info">  Kopiowanie biblioteki Framework.jar  </echo>
+        <copy file = "..\Framework\dist\Framework.jar" tofile = "lib\Framework.jar" />
+    </target>
+    <target name="-post-clean" depends="fra-post-clean"> </target>    
+    <target name="-post-jar" depends="fra-post-jar"> </target>		
+	
+</project>

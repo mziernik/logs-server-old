@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alerts>
+    <xmpp>
+        <knd>error</knd>
+        <knd not="true">debug</knd>
+        <src>Content*</src>
+        <usr>milosz*</usr>  
+    </xmpp>
+    
+    <email>
+        <knd>error</knd>
+        <knd not="true">debug</knd>
+        <src>Content*</src>
+        <usr>milosz*</usr>  
+    </email>
+    
+            
+</alerts>

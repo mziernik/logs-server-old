@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="default" basedir=".">
+    
+    <!--            Deklaracje właściwości                  -->       
+    <!--katalog docelowy binarek-->
+    <property name="bin.dir" value="bin"/>
+    <!--nazwa pliku JAR-->
+    <property name="jar.name" value="${ant.project.name}.jar"/>
+    <!--nazwa pliku WAR-->
+    <property name="war.name" value="${ant.project.name}.war"/>
+    <!--katalog źródłowy klas javy-->
+    <property name="src.dir" value="src"/>
+    <!--katalog źródłowy zasobów web-->
+    <property name="web.dir" value="web"/>
+    <!--katalog backupu plikó źródłowych oraz web-->
+    <property name="backup.dir" value="backup"/>
+    <!--katalog docelowy struktury web-->
+    <property name="res.dir" value="res"/>
+    <!--docelowy katalog web-->
+    <property name="build.web.dir" value="${bin.dir}/web"/>
+    
+    <property name="cleanup.script.name" value="cleanup"/>
+     
+    <!--nazwa skryptu uruchamiania .bat oraz .sh (bez rozszerzenia)-->
+    <property name="run.script.name" value="run"/>    
+    <!--skrypt wykonywany przed wywołeniem procesu-->
+    <property name="run.script.bat.before" value="@echo off"/>
+    <property name="run.script.sh.before" value=""/>
+    
+    <!--skrypt wykonywany po wywołeniem procesu-->
+    <property name="run.script.bat.after" value=""/>
+    <property name="run.script.sh.after" value=""/>
+    
+    <!--argumenty -->
+    <property name="run.script.java.args" value=""/>
+    
+    
+    <property name="work.dir" value="${bin.dir}"/>
+    <property name="build.dir" value="${bin.dir}/temp/build"/>
+    <property name="dist.dir" value="${build.dir}/dist"/>
+    <property name="build.classes.dir" value="${build.web.dir}/WEB-INF/classes"/>
+    <property name="dist.jar" value="${bin.dir}/${jar.name}"/>
+    <property name="dist.war" value="${bin.dir}/${war.name}"/>
+
+    <!--<property name="run.jvmargs" value="-Daaaaaaaa"/>     nie dziala   -->
+
+ 
+    <!--#automatyczna kompilacja-->
+    <!--compile.on.save=true-->
+
+     
+    
+    
+    <target name="fra-pre-init" >        
+    </target>    
+    
+    <target name="fra-post-init">        
+        <antcall target="verify-structure"/>
+    </target> 
+    
+    <target name="fra-post-clean">  
+        <antcall target="pre-cleanup"/>
+    </target> 
+    
+    <target name="fra-pre-compile" > 
+        <antcall target="copy-res-bin"/>      
+        <antcall target="update-version-properties"/>   
+        <antcall target="pack-sources" />
+    </target>    
+    
+    <target name="fra-post-compile"> 
+        <antcall target="update-web-resources"/>   
+    </target> 
+    
+    <target name="fra-post-jar">
+        <antcall target="post-cleanup"/>
+        <antcall target="build-war"/>   
+        <antcall target="create-run-scripts"/> 
+        <antcall target="create-cleanup-scripts"/>
+        <antcall target="backup-sources"/> 
+        <antcall target="check-pre-config"/>
+    </target>
+    
+  
+    
+
+    
+        
+    <!--  DEFINICJE FUNCJI   -->        
+                    
+    <target name="verify-structure" if="build.web.dir">
+        <fail message="Nie znaleziono katalogu źródeł '${src.dir}' (parametr: src.dir)">
+            <condition>
+                <not> 
+                    <available file="${src.dir}" /> 
+                </not>
+            </condition>
+        </fail>
+        <fail message="Nie znaleziono pliku ${web.dir}/WEB-INF/web.xml">
+            <condition>
+                <not> 
+                    <available file="${web.dir}/WEB-INF/web.xml" /> 
+                </not>
+            </condition>
+        </fail>
+    </target> 
+    
+    
+    <!--=========================== Czyszczenie =============================-->
+    <target name="pre-cleanup">  
+        <delete file="${dist.jar}"/>
+        <delete file="${dist.war}"/>
+        <delete dir="${build.web.dir}" />
+        <delete dir="${work.dir}/lib" />
+        <delete dir="${work.dir}/temp" />
+    </target>
+    
+    <target name="post-cleanup" if="build.web.dir">  
+        <delete file="${work.dir}/README.TXT"/>
+        <delete dir="${build.dir}" /> 
+    </target>
+    
+    <!--Kopiowanie zawartości katalogu res do appdata--> 
+    <target name="copy-res-bin" if="res.dir"> 
+        <mkdir dir="${res.dir}"/>
+        <copy todir="${work.dir}" >
+            <fileset dir="${res.dir}">
+                <exclude name="**/info.md"/>
+            </fileset>  
+        </copy>
+    </target>
+    
+    <!--Aktualizacja wersji (version.properties)-->     	
+    <target name="update-version-properties" >     
+        <propertyfile file="${build.web.dir}/WEB-INF/version.properties"> 
+            <entry key="build" value="1" type="int" operation="+"/> 
+            <entry key="date" type="date" value="now" pattern="yyyy-MM-dd HH:mm:ss.SSS" />
+        </propertyfile> 
+    </target> 
+    
+    <!--Kopiowanie zasobów WEB-->
+    <target name="update-web-resources" if="build.web.dir"> 
+        <copy todir="${build.web.dir}">
+            <fileset dir="${web.dir}" >  
+                <exclude name="**/info.md"/>
+            </fileset>  
+        </copy>
+        <!--Utwórz katlog lib - tomcat go wymaga-->
+        <mkdir dir="${build.web.dir}/WEB-INF/lib" />
+        <mkdir dir="${build.web.dir}/META-INF" />
+    </target>      
+   
+   
+
+     
+    <target name="build-war" if="build.web.dir" unless="skip.war"> 
+        <echo level="info">----------- Budowanie pliku WAR -----------</echo>
+        <war destfile="${dist.war}" >
+            <fileset dir="${build.web.dir}">
+                <include name="**/*.*"/>
+            </fileset>            
+            <mappedresources>
+                <fileset dir="lib" includes="**/*.jar" excludes="/embedded/" />
+                <chainedmapper>
+                    <flattenmapper/>
+                    <globmapper from="*.jar" to="WEB-INF/lib/*.jar" />
+                </chainedmapper>
+            </mappedresources>
+            <classes dir="${build.classes.dir}"/>
+        </war>
+    </target>    
+     
+    <target name="create-run-scripts" if="run.script.name" unless="skip.run-script"> 
+        <echo  file="${work.dir}/${run.script.name}.bat">${run.script.bat.before} 
+            start "${application.title}" java ${run.script.java.args} -jar ${jar.name} 
+            ${run.script.bat.after}</echo>
+
+        <echo file="${work.dir}/${run.script.name}.sh">${run.script.sh.before} 
+            java ${run.script.java.args} -jar ${jar.name} 
+            ${run.script.sh.after}</echo>
+    </target>
+    
+    <target name="create-cleanup-scripts" if="run.script.name" unless="skip.cleanup-script"> 
+        <echo  file="${work.dir}/${cleanup.script.name}.bat">@echo off
+            rmdir temp
+            mkdir temp            
+            rmdir web\WEB-INF\classes /s /q
+            timeout /T 2
+        </echo>
+
+    </target>
+    
+    <target name="check-pre-config">
+        <available file="${bin.dir}/appdata/pre_config.json" property="pre-config-json"/>
+        <antcall target="update-pre-config"/>         
+    </target>  
+    
+    <target name="update-pre-config" unless="pre-config-json">
+        <echo level="info">----------- Generuję plik pre_config.json -----------</echo> 
+        <echo  file="${bin.dir}/appdata/pre_config.json">{
+    devMode: null, //boolean
+    paths:{
+        appData: null,
+        resources: null,
+        home: null,
+        temp: null,
+        logs: null         
+    },
+    systemProperties:{
+    },
+    hostName: null,
+    serviceName: null,
+    serviceTitle: null,
+    http:{
+        port: null,
+        address: null
+    },
+    https:{
+        port: null,
+        address: null,
+        keystoreFile: null,
+        keystorePass: null
+    }         
+}</echo>
+    </target>  
+    
+    <target name="pack-sources" unless="skip.pack.sources"> 
+        <echo level="info">----------- Archiwizacja źródeł -----------</echo>  
+        <zip destfile="${build.web.dir}/WEB-INF/sources.zip"
+             basedir="${src.dir}" includes="**/*.java" />
+    </target>
+    
+    <target name="backup-sources" if="backup.dir" unless="skip.backup"> 
+        <echo level="info">----------- Tworzę kopię zapasową źródeł -----------</echo>        
+        <tstamp> 
+            <format property="backup.ts" pattern="yyyy-MM-dd HH-mm-ss"/> 
+        </tstamp>
+        
+        <zip destfile="${backup.dir}/${backup.ts}.zip" >
+            <zipfileset dir="${src.dir}" prefix="src">
+                <exclude name="**/info.md"/>
+            </zipfileset>
+            <zipfileset dir="${web.dir}" prefix="web">
+                <exclude name="**/info.md"/>
+            </zipfileset>   
+            <zipfileset dir="nbproject" prefix="nbproject">
+                <exclude name="**/info.md"/>
+            </zipfileset>   
+        </zip>
+
+    </target>  
+        
+</project>

@@ -1,0 +1,1 @@
+http://www.postgresql.org/docs/9.1/static/pgtrgm.html

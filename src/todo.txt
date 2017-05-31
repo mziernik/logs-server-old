@@ -1,0 +1,66 @@
+- dodać pole host w logach zawierające nazwę hosta
+
+
+NullPointerException: logs.parsers.Squid.read (Squid.java:133)
+
+- dublują się logi (UID logu jest ignorowany)
+
+tu nastepuje DeadLock:  console.Filters.build (Filters.java: 105)
+
+
+
+poprawić integrację z RSysLogiem http://www.rsyslog.com/using-a-different-log-format-for-all-files/
+    np <191>Jun 30 14:38:49 AsteriskWebrtc asterisk[2618]: VERBOSE[3949]: res_http_websocket.c:685 in websocket_callback: == WebSocket connection from '10.0.0.125:35426' for protocol 'sip' accepted using version '13'
+        - AsteriskWebrtc: host
+        - asterisk: aplikacjia
+        - 2618: pid
+
+
+------------------ Silnik ----------------------
+- dorobić forwardowanie logów na dany adres URL
+- opcja logów Tryb/profil: definiowane tekstowo , Deweloperski, Testowy,  Demonstracyjny, Produkcyjny
+
+
+- mniej restrykcyjna interpretacja JSON-a
+    - automatyczne rozpoznawanie struktury (np pominięcie głównego obiektu)
+    - ignorowanie białych znaków przed i po obiekcie
+
+
+{
+  ver: 3,
+    log:    {
+      "dte": "2015-05-06 03:10:00.199",
+    }
+}
+
+------------------ Web ----------------------------
+- przerobić zamianę spacji w metodzie textToDivs na tag PRE
+- podświetlanie grup tych samych elementów (np tagów) po najechaniu kursorem
+- szczegóły błędu: klasa (pole cls)
+- fcl, bcl nie działa
+- kolor debug: szary, event: zielony, log: żółty ???
+
+
+
+----------------- Archiwum -------------------
+- oś czasu
+
+
+nie jest obsłużone:
+{
+   "ver": 1,
+   "status": {
+      "uid": "f5c3afbc70744c4581a3fd5811ea470c",
+      "src": "Content Demo",
+      "dte": "2015-04-16 15:35:21.564",
+      "tag": "Dostępna pamięć",
+      "val": "807 MB / 5.85 GB",
+      "prc": 2076,
+      "thr": 61,
+      "thn": "Servlet status",
+      "dev": "server (Siwy2)",
+      "usr": "root",
+      "ses": "b696ef7080504d49a811d89efbee9593",
+      "ist": "2014-06-26 08:21:10 a4183c74"
+   }
+}

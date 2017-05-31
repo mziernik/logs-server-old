@@ -1,0 +1,90 @@
+
+LogStatus
+
+
+
+
+
+
+
+// ============================= METODY SERWISOWE ===========================//
+
+Nazwa serwletu: $
+domyślne odwołanie http://localhost/usluga/$
+
+    * Należy pamiętać, że domyślnym katalogiem roboczym usługi staje się katalog "$"
+      Linkująć JS lub CSS należy odwołać się przez podkatalog: .\..\plik.css
+        
+    /$?CacheDataId 
+        pobranie pliku na podstawie id chache data
+        * id musi mieć 26 znaków
+        * przykład: http://localhost/usluga/$?g1i1efc7uwwqyf4yd2awu3v0sw
+
+ODWOŁANIE SIĘ DO STRONY NA PODSTAWIE NAZWY KLASY
+    /$/className?params   lub     /$?className&params
+    * className musi zawierać kropkę
+
+
+POBIERANIE PLIKU:
+    /$?id
+    * Zwrócony zostanie plik o danym id
+    * W przypadku błędnego id: 404, jeśli plik wygasł 410
+
+USUWANIE PLIKU
+    /$?remove=id
+
+
+
+http://localhost:8080/ContentServerNew/$?remove=wkxt0no1knse41vawj8tvrz7k9
+
+PODGLĄD (POBIERANIE) PLIKU:
+    /$/preview/nazwa_pliku?id
+    * zwrócony zostanie plik bez content-disposition, przeglądarka spróbuje wyświetlić zawartość
+      Jeśli zawartości nie uda się wyświetlić, zwrócony zostanie plik o nazwie takiej
+      jak w ostatnim segmencie adresu url
+    * Parametr id musi mieć 26 znaków  
+    * przykład: http://localhost:8080/logi/$/preview/miniature.png?c1ibig3iwhllacbvx2sjyxbzsm
+      Zwrócony zostanie plik o id "c1ibig3iwhllacbvx2sjyxbzsm" i nazwie "miniature.png"
+
+
+PODGLĄD JAKO TEXT
+    /$/text?id
+    * zwraca zawartość pliku jako text/plain
+
+
+
+
+
+
+
+
+//--------------------
+DO ZROBIENIA
+
+
+-   zapisywanie listy zchachowanych plikow do pliku
+
+
+
+{
+  ver: 1,
+  logs: [
+    {
+      knd: "log",
+      src: "TransKasa",
+      dte: "2013-02-13 08:37:28.206",
+      dst: [
+        "console",
+        "database"
+      ],
+      tag: "CONTEXT",
+      val: "TransKasa, contextinitialized, host: milosz",
+      prc: 5644,
+      thr: 394,
+      dev: "milosz",
+      usr: "admin",
+      cst: "com.logs.ServletLog.onBeforeSendLog(ServletLog.java: 42)\ncom.logs.Log.addLog(Log.java: 221",
+      ses: "10c6d823e15b416e9a69a9f68177983e"
+    }
+  ]
+}

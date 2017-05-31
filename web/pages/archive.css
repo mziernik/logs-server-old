@@ -1,0 +1,99 @@
+body {
+    background-color: #000;
+    color: #ddd;    
+}
+
+.page-counter a{
+    color: #ccc;
+}
+
+.page-counter a:hover {
+    margin: -2px -4px;
+    border: 1px solid #666;
+    color: #000;
+    background-color: #eea;
+}
+
+.current_page{
+    text-align: center;
+}
+
+.current_page input[type=number]{
+    width: 50px;
+    background-color: #333;
+    color: #eee;
+    border: 1px solid #888;
+    margin: 4px;
+    text-align: center;
+}
+
+
+.current_page button {
+    color: #ddd;
+    background-color: #666;
+    border: 1px solid #888;
+    padding: 4px 10px;
+    margin: 4px;
+}
+
+#filters{
+    border: 1px solid #669;
+    padding: 8px;
+}
+
+#filters tr:hover td {
+    background-color: #223;
+}
+
+#filters input,
+#filters select{
+    background: none;
+    background-color: #111;
+    color: #eee;
+    border: 1px solid #444;
+}
+
+#filters input[type=text] {
+    padding: 0 4px;
+    width: 400px;
+}
+
+#filters input[type=button] {
+    padding: 2px 8px;
+}
+
+#filters td:nth-child(3) select{
+    width: 100px;
+}
+
+#filters td:nth-child(4){
+    width: 100%;
+}
+
+#preFilterApply{
+    text-align:  right;
+}
+
+#filters-info{
+    margin-bottom: 20px;
+    font: 8pt Verdana;
+}
+
+#filters-info label{
+    font: 10pt Verdana;
+    color: yellow;
+    margin-left: 8px;
+}
+
+/*---------------------------------*/
+
+#filters {
+    background-color: #000;
+    position: fixed;
+}
+
+#main{
+    padding-top: 100px;
+    width: 100%;
+    height: 100%;
+}

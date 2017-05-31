@@ -1,0 +1,107 @@
+nie dziala blokowanie pozycji wyswietlanego elementu. Jesli przesuniemy 
+scrolla do gory i pojawia sie nowe logi, to tekst przesunie sie w gore, 
+mimo iz nie powinien
+
+
+
+
+
+- jesli mamy wlaczony znacznik id watku i zaznaczymy naglowek id watku to wszystkie znaczniki beda miec ten sam kolor
+- synchroniczne odswiezanie statusow. jesli pochodza z wielu zrodel pojawiaja sie wielokrotnie
+- poprawic automatyczne scrollowanie. Obecnie jesli pojawi sie nowy log to tekst przesunie sie do gory
+- jesli znacznik ma wartosc <brak> to mimo wszystko wyswietlany jest kolor
+
+
+- sprawdzic czy wyswietlaja sie entery po rozwinieciu szczegolowlogu
+- automatyczne wykrywanie typu tresci, wyswietlanie w szczegolach
+- wyslanie wewnatrz pola typu data (value, details etc) powoduje wyswietlenie jakoi listy
+
+
+- odescapowac cos takiego :
+
++ dodac obsluge wielu tagow
+
+
++ przy bledzie autoryzacji polaczenie websocket powinno byc rozlaczone
+- przy sortowaniu nazw filtrow uwzgledniac duze i male litery oraz polskei znaki
+
+
+
+- mlogger: uniemozliwic zapetlenia. 
+  jesli wiecej niz 100 logow zostaje wyslanych jednoczesnie o tej samej wartosci, to pomijaj kolejne
+
+- dodac przycisk "poprzednie" na poczatku listy 
+- usunąć pole uid ze szczegółów
+- obsluzyc typ tresci text/xml/json/...
+- dodac obsluge atrybutu priorytetu watku
+- dodac przycisk "kopiuj" w szczegółach
+- podczas przebuildowania usługi pojawia się błąd autoryzacji
+
++ wszystkie znaczniki sa domyslnie zaznaczone
++ nieprawidłowe filtrowanie po tagach. Przykałd: nie dziala 'session'
+
+
++ ConcurrentModificationException console.Console.getFilters (Console.java:115)
++ przy wlaczonej pauzie i tak sa dodawane wiersze w tabeli 
++ dodać weryfikację czy web socket łączy się przez proxy czy nie
++ na firefoxie nie dzialaja przyciski 
++ jesli uzytkownik zmieni haslo w ldapie to nie moze sie zalogowac. prawdopodobnie brane jest pod uwage haslo z roamingu
++ zle interpretowane sa wielokrotne atrybuty (nadpisywane)
+
++ websocket: w przypadku utraty połączenia: "Utracono połączenie z serwerem"
++ przerobic klasy typu page, dodac logike @Instance -> @Authwired
++ przeladowanie zasobow serwera w oddzielnym watku
+- dodac obsluge wielu error stack trace-ow
+- wprowadzic historie zmian filtrow (ikona wstecz na belce glownej) tak aby mozna bylo coofnac ostatnie zmiany
+
++ da sie zaznaczyc tekst tprzeciagajac kursor w pionie
++ w servletLog logRequest dodac  zapisywanie atrybutow żądania o odpowiedzi request.getAttributeNames()
++ nie dziala filtr "<brak>"
++ problem z obsluga pola edycujnego logow na str
+- przy probie zaznaczenia tekstu na srodku ekranu klikamy na niewidoczna klepsydre i przeciagamy ja
+- przerobic filtry z label na table, dodac przycnanie wartosci
++ okno bledow jako center object
++ dorobić obsługę czasu życia logów (max 7 dni)
+- opcja zapisywania szczegolow do pliku, opcja pobierz widoczne
++ jeśli po uruchomieniu nie ma logow, to wisi na ekranie klepsydra
+- filtr zakresu dat jako pole eycyjne, id watku, id procesu, żądanie, sesja
+
+
+
+
+
+
+
++ zmienic logike zapamietywania wybranych filtrow. Zapisyawc wykluczone, jesli pojawi sie nowy to dodac automatycznie
++ jesli odebrany zostanie log zgodny z jsonem i zawierajacy bledy to wyswietlic wyjatek
+    przyklad: brak knd
++ dodac obsluge typow est, cst w szczegolach logu
++ dla internallogs ukryc przycisk zrodlo
++ dodac wyswietlanie jako CSV
++ przerobic logowanie
++ w klasie LogAttr dodac pole title, przy filtrowaniu (metoda isIn) filtrowac po nazwie i kluczu
++ jeśli odznaczymy naglowek data, to znika zawijanie tekstu wartosci
++ obsluzyc atrybuty thn, ver, est, cst
+- dodac opcje walidacji elementow (pod katem nazw)
++ nazwy atrybutow przerobic na adnotacje
++ obsługa datagramów wieloczęściowych
++ nie działa przycisk info w szczegółach logu
++ dodać usuwanie znaków ascii < 32
++ prawdzic reakcje na bledy polaczen WebSocket
++ jesli rozwiniete sa szczegoly i zwezimy okno to rozjezdza sie uklad strony
++ poprawic zaznaczanie (np daty)
++ klepsydra wisi jesli wystapil blad polaczenia
++ poprawic zaznaczanie
++ nie odswieza sie inforamcja o zalogowaniu sie nowego uzytkownika (np klinetow: 2) 
++ pole tag przerobic na opcjonalne
++/- ustawić atrybut title dla wartosci przyciętych
++ po rozwinięciu szczegółów umożliwić zaznaczanie tekstu
++ wymuszone zawijanie tekstu w nagłówkach
++ formatowanie identyfikatora logu (grupowanie ze spacjami)
++ dodać rozpoznawanie linków (moduł js z contentu)
++ rozpoznawanie treści bloków (Json, Html)
++ dopisać rozpoznawanie typu binarnego (hex)
++ po wystartowaniu uslugi wyswietlic informacje na jakich interfejsach nasluchuje serwer
++ jesli nie ma zdefiniowanych interfejsow wyswietlic stosowny komunikat
+
+
